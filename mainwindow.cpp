@@ -207,21 +207,30 @@ void MainWindow::onSendButtonClicked()
     quint16 luffSpeedValue = ui->luffSpeedSpinBox->value();
     quint16 hoistSpeedValue = ui->hoistSpeedSpinBox->value();
     quint16 pathLengthValue = ui->pathLengthSpinBox->value();
-    quint16 slewPathValue1 = ui->slewPathSpinBox1->value();
-    quint16 slewPathValue2 = ui->slewPathSpinBox2->value();
-    quint16 slewPathValue3 = ui->slewPathSpinBox3->value();
-    quint16 slewPathValue4 = ui->slewPathSpinBox4->value();
-    quint16 slewPathValue5 = ui->slewPathSpinBox5->value();
-    quint16 luffPathValue1 = ui->luffPathSpinBox1->value();
-    quint16 luffPathValue2 = ui->luffPathSpinBox2->value();
-    quint16 luffPathValue3 = ui->luffPathSpinBox3->value();
-    quint16 luffPathValue4 = ui->luffPathSpinBox4->value();
-    quint16 luffPathValue5 = ui->luffPathSpinBox5->value();
-    quint16 hoistPathValue1 = ui->hoistPathSpinBox1->value();
-    quint16 hoistPathValue2 = ui->hoistPathSpinBox2->value();
-    quint16 hoistPathValue3 = ui->hoistPathSpinBox3->value();
-    quint16 hoistPathValue4 = ui->hoistPathSpinBox4->value();
-    quint16 hoistPathValue5 = ui->hoistPathSpinBox5->value();
+    // 使用数组保存路径参数值，添加显式类型转换
+    quint16 slewPathValues[5] = {
+        static_cast<quint16>(ui->slewPathSpinBox1->value()),
+        static_cast<quint16>(ui->slewPathSpinBox2->value()),
+        static_cast<quint16>(ui->slewPathSpinBox3->value()),
+        static_cast<quint16>(ui->slewPathSpinBox4->value()),
+        static_cast<quint16>(ui->slewPathSpinBox5->value())
+    };
+    
+    quint16 luffPathValues[5] = {
+        static_cast<quint16>(ui->luffPathSpinBox1->value()),
+        static_cast<quint16>(ui->luffPathSpinBox2->value()),
+        static_cast<quint16>(ui->luffPathSpinBox3->value()),
+        static_cast<quint16>(ui->luffPathSpinBox4->value()),
+        static_cast<quint16>(ui->luffPathSpinBox5->value())
+    };
+    
+    quint16 hoistPathValues[5] = {
+        static_cast<quint16>(ui->hoistPathSpinBox1->value()),
+        static_cast<quint16>(ui->hoistPathSpinBox2->value()),
+        static_cast<quint16>(ui->hoistPathSpinBox3->value()),
+        static_cast<quint16>(ui->hoistPathSpinBox4->value()),
+        static_cast<quint16>(ui->hoistPathSpinBox5->value())
+    };
 
     // 创建Modbus TCP请求帧
     QByteArray request;
@@ -247,21 +256,19 @@ void MainWindow::onSendButtonClicked()
         stream << luffSpeedValue;
         stream << hoistSpeedValue;
         stream << pathLengthValue;
-        stream << slewPathValue1;
-        stream << slewPathValue2;
-        stream << slewPathValue3;
-        stream << slewPathValue4;
-        stream << slewPathValue5;
-        stream << luffPathValue1;
-        stream << luffPathValue2;
-        stream << luffPathValue3;
-        stream << luffPathValue4;
-        stream << luffPathValue5;
-        stream << hoistPathValue1;
-        stream << hoistPathValue2;
-        stream << hoistPathValue3;
-        stream << hoistPathValue4;
-        stream << hoistPathValue5;
+
+        // 使用循环写入数组中的值
+        for (int i = 0; i < pathLengthValue; ++i) {
+            stream << slewPathValues[i];
+        }
+
+        for (int i = 0; i < pathLengthValue; ++i) {
+            stream << luffPathValues[i];
+        }
+
+        for (int i = 0; i < pathLengthValue; ++i) {
+            stream << hoistPathValues[i];
+        }
     } else if (functionCode == 0x06) { // Write Single Register
         stream << controlModeAddr;
         stream << controlModeValue;
