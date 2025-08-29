@@ -103,13 +103,23 @@ void MainWindow::onSendButtonClicked()
     // 读取连接参数
     quint8 slaveAddr = static_cast<quint8>(ui->slaveSpinBox->value());
     quint8 functionCode = getFunctionCode();
-
     // 读取参数地址和值
     quint16 controlModeAddr = ui->controlModeAddrSpinBox->value();
     quint16 controlModeValue = ui->controlModeSpinBox->value();
+    quint16 slewSpeedAddr = ui->slewSpeedSpinBox->value();
     quint16 slewSpeedValue = ui->slewSpeedSpinBox->value();
+    quint16 luffSpeedAddr = ui->luffSpeedSpinBox->value();
     quint16 luffSpeedValue = ui->luffSpeedSpinBox->value();
+    quint16 hoistSpeedAddr = ui->hoistSpeedSpinBox->value();
     quint16 hoistSpeedValue = ui->hoistSpeedSpinBox->value();
+    quint16 pathLengthAddr = ui->pathLengthAddrSpinBox->value();
+    quint16 pathLengthValue = ui->pathLengthSpinBox->value();
+    quint16 slewPathAddr = ui->slewPathAddrSpinBox->value();
+    quint16 slewPathValue = ui->slewPathSpinBox->value();
+    quint16 luffPathAddr = ui->luffPathAddrSpinBox->value();
+    quint16 luffPathValue = ui->luffPathSpinBox->value();
+    quint16 hoistPathAddr = ui->hoistPathAddrSpinBox->value();
+    quint16 hoistPathValue = ui->hoistPathSpinBox->value();
 
     // 创建Modbus TCP请求帧
     QByteArray request;
@@ -128,12 +138,16 @@ void MainWindow::onSendButtonClicked()
     // 根据寄存器类型构建请求体
     if (functionCode == 0x10) { // Write Multiple Holding Registers
         stream << controlModeAddr; // Starting address
-        stream << quint16(4);      // Quantity of registers
-        stream << quint8(8);       // Byte count
+        stream << quint16(8);      // Quantity of registers
+        stream << quint8(16);       // Byte count
         stream << controlModeValue;
         stream << slewSpeedValue;
         stream << luffSpeedValue;
         stream << hoistSpeedValue;
+        stream << pathLengthValue;
+        stream << slewPathValue;
+        stream << luffPathValue;
+        stream << hoistPathValue;
     } else if (functionCode == 0x06) { // Write Single Register
         stream << controlModeAddr;
         stream << controlModeValue;

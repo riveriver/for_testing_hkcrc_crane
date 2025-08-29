@@ -76,6 +76,12 @@
             <property name="maximum">
              <number>65535</number>
             </property>
+            <property name="displayIntegerBase">
+             <number>16</number>
+            </property>
+            <property name="prefix">
+             <string>0x</string>
+            </property>
            </widget>
           </item>
           <item row="1" column="2">
@@ -102,6 +108,12 @@
             </property>
             <property name="maximum">
              <number>65535</number>
+            </property>
+            <property name="displayIntegerBase">
+             <number>16</number>
+            </property>
+            <property name="prefix">
+             <string>0x</string>
             </property>
            </widget>
           </item>
@@ -130,6 +142,12 @@
             <property name="maximum">
              <number>65535</number>
             </property>
+            <property name="displayIntegerBase">
+             <number>16</number>
+            </property>
+            <property name="prefix">
+             <string>0x</string>
+            </property>
            </widget>
           </item>
           <item row="3" column="2">
@@ -157,6 +175,12 @@
             <property name="maximum">
              <number>65535</number>
             </property>
+            <property name="displayIntegerBase">
+             <number>16</number>
+            </property>
+            <property name="prefix">
+             <string>0x</string>
+            </property>
            </widget>
           </item>
           <item row="4" column="2">
@@ -169,7 +193,139 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="1" colspan="2">
+          <item row="5" column="0">
+           <widget class="QLabel" name="pathLengthLabel">
+            <property name="text">
+             <string>Path Length</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QSpinBox" name="pathLengthAddrSpinBox">
+            <property name="minimum">
+             <number>4</number>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+            <property name="displayIntegerBase">
+             <number>16</number>
+            </property>
+            <property name="prefix">
+             <string>0x</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2">
+           <widget class="QSpinBox" name="pathLengthSpinBox">
+            <property name="minimum">
+             <number>0</number>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="slewPathLabel">
+            <property name="text">
+             <string>Slew Path</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QSpinBox" name="slewPathAddrSpinBox">
+            <property name="minimum">
+             <number>5</number>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+            <property name="displayIntegerBase">
+             <number>16</number>
+            </property>
+            <property name="prefix">
+             <string>0x</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="2">
+           <widget class="QSpinBox" name="slewPathSpinBox">
+            <property name="minimum">
+             <number>0</number>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="luffPathLabel">
+            <property name="text">
+             <string>Luff Path</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QSpinBox" name="luffPathAddrSpinBox">
+            <property name="minimum">
+             <number>6</number>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+            <property name="displayIntegerBase">
+             <number>16</number>
+            </property>
+            <property name="prefix">
+             <string>0x</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="2">
+           <widget class="QSpinBox" name="luffPathSpinBox">
+            <property name="minimum">
+             <number>0</number>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="hoistPathLabel">
+            <property name="text">
+             <string>Hoist Path</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1">
+           <widget class="QSpinBox" name="hoistPathAddrSpinBox">
+            <property name="minimum">
+             <number>7</number>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+            <property name="displayIntegerBase">
+             <number>16</number>
+            </property>
+            <property name="prefix">
+             <string>0x</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="2">
+           <widget class="QSpinBox" name="hoistPathSpinBox">
+            <property name="minimum">
+             <number>0</number>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="1" colspan="2">
            <widget class="QPushButton" name="sendButton">
             <property name="text">
              <string>Send</string>

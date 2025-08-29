@@ -54,6 +54,18 @@ public:
     QLabel *hoistSpeedLabel;
     QSpinBox *hoistSpeedAddrSpinBox;
     QSpinBox *hoistSpeedSpinBox;
+    QLabel *pathLengthLabel;
+    QSpinBox *pathLengthAddrSpinBox;
+    QSpinBox *pathLengthSpinBox;
+    QLabel *slewPathLabel;
+    QSpinBox *slewPathAddrSpinBox;
+    QSpinBox *slewPathSpinBox;
+    QLabel *luffPathLabel;
+    QSpinBox *luffPathAddrSpinBox;
+    QSpinBox *luffPathSpinBox;
+    QLabel *hoistPathLabel;
+    QSpinBox *hoistPathAddrSpinBox;
+    QSpinBox *hoistPathSpinBox;
     QPushButton *sendButton;
     QGroupBox *connectionGroup;
     QFormLayout *formLayout_2;
@@ -129,6 +141,7 @@ public:
         controlModeAddrSpinBox->setObjectName(QString::fromUtf8("controlModeAddrSpinBox"));
         controlModeAddrSpinBox->setMinimum(0);
         controlModeAddrSpinBox->setMaximum(65535);
+        controlModeAddrSpinBox->setDisplayIntegerBase(16);
 
         gridLayout->addWidget(controlModeAddrSpinBox, 1, 1, 1, 1);
 
@@ -148,6 +161,7 @@ public:
         slewSpeedAddrSpinBox->setObjectName(QString::fromUtf8("slewSpeedAddrSpinBox"));
         slewSpeedAddrSpinBox->setMinimum(1);
         slewSpeedAddrSpinBox->setMaximum(65535);
+        slewSpeedAddrSpinBox->setDisplayIntegerBase(16);
 
         gridLayout->addWidget(slewSpeedAddrSpinBox, 2, 1, 1, 1);
 
@@ -167,6 +181,7 @@ public:
         luffSpeedAddrSpinBox->setObjectName(QString::fromUtf8("luffSpeedAddrSpinBox"));
         luffSpeedAddrSpinBox->setMinimum(2);
         luffSpeedAddrSpinBox->setMaximum(65535);
+        luffSpeedAddrSpinBox->setDisplayIntegerBase(16);
 
         gridLayout->addWidget(luffSpeedAddrSpinBox, 3, 1, 1, 1);
 
@@ -186,6 +201,7 @@ public:
         hoistSpeedAddrSpinBox->setObjectName(QString::fromUtf8("hoistSpeedAddrSpinBox"));
         hoistSpeedAddrSpinBox->setMinimum(3);
         hoistSpeedAddrSpinBox->setMaximum(65535);
+        hoistSpeedAddrSpinBox->setDisplayIntegerBase(16);
 
         gridLayout->addWidget(hoistSpeedAddrSpinBox, 4, 1, 1, 1);
 
@@ -196,10 +212,90 @@ public:
 
         gridLayout->addWidget(hoistSpeedSpinBox, 4, 2, 1, 1);
 
+        pathLengthLabel = new QLabel(parametersGroup);
+        pathLengthLabel->setObjectName(QString::fromUtf8("pathLengthLabel"));
+
+        gridLayout->addWidget(pathLengthLabel, 5, 0, 1, 1);
+
+        pathLengthAddrSpinBox = new QSpinBox(parametersGroup);
+        pathLengthAddrSpinBox->setObjectName(QString::fromUtf8("pathLengthAddrSpinBox"));
+        pathLengthAddrSpinBox->setMinimum(4);
+        pathLengthAddrSpinBox->setMaximum(65535);
+        pathLengthAddrSpinBox->setDisplayIntegerBase(16);
+
+        gridLayout->addWidget(pathLengthAddrSpinBox, 5, 1, 1, 1);
+
+        pathLengthSpinBox = new QSpinBox(parametersGroup);
+        pathLengthSpinBox->setObjectName(QString::fromUtf8("pathLengthSpinBox"));
+        pathLengthSpinBox->setMinimum(0);
+        pathLengthSpinBox->setMaximum(65535);
+
+        gridLayout->addWidget(pathLengthSpinBox, 5, 2, 1, 1);
+
+        slewPathLabel = new QLabel(parametersGroup);
+        slewPathLabel->setObjectName(QString::fromUtf8("slewPathLabel"));
+
+        gridLayout->addWidget(slewPathLabel, 6, 0, 1, 1);
+
+        slewPathAddrSpinBox = new QSpinBox(parametersGroup);
+        slewPathAddrSpinBox->setObjectName(QString::fromUtf8("slewPathAddrSpinBox"));
+        slewPathAddrSpinBox->setMinimum(5);
+        slewPathAddrSpinBox->setMaximum(65535);
+        slewPathAddrSpinBox->setDisplayIntegerBase(16);
+
+        gridLayout->addWidget(slewPathAddrSpinBox, 6, 1, 1, 1);
+
+        slewPathSpinBox = new QSpinBox(parametersGroup);
+        slewPathSpinBox->setObjectName(QString::fromUtf8("slewPathSpinBox"));
+        slewPathSpinBox->setMinimum(0);
+        slewPathSpinBox->setMaximum(65535);
+
+        gridLayout->addWidget(slewPathSpinBox, 6, 2, 1, 1);
+
+        luffPathLabel = new QLabel(parametersGroup);
+        luffPathLabel->setObjectName(QString::fromUtf8("luffPathLabel"));
+
+        gridLayout->addWidget(luffPathLabel, 7, 0, 1, 1);
+
+        luffPathAddrSpinBox = new QSpinBox(parametersGroup);
+        luffPathAddrSpinBox->setObjectName(QString::fromUtf8("luffPathAddrSpinBox"));
+        luffPathAddrSpinBox->setMinimum(6);
+        luffPathAddrSpinBox->setMaximum(65535);
+        luffPathAddrSpinBox->setDisplayIntegerBase(16);
+
+        gridLayout->addWidget(luffPathAddrSpinBox, 7, 1, 1, 1);
+
+        luffPathSpinBox = new QSpinBox(parametersGroup);
+        luffPathSpinBox->setObjectName(QString::fromUtf8("luffPathSpinBox"));
+        luffPathSpinBox->setMinimum(0);
+        luffPathSpinBox->setMaximum(65535);
+
+        gridLayout->addWidget(luffPathSpinBox, 7, 2, 1, 1);
+
+        hoistPathLabel = new QLabel(parametersGroup);
+        hoistPathLabel->setObjectName(QString::fromUtf8("hoistPathLabel"));
+
+        gridLayout->addWidget(hoistPathLabel, 8, 0, 1, 1);
+
+        hoistPathAddrSpinBox = new QSpinBox(parametersGroup);
+        hoistPathAddrSpinBox->setObjectName(QString::fromUtf8("hoistPathAddrSpinBox"));
+        hoistPathAddrSpinBox->setMinimum(7);
+        hoistPathAddrSpinBox->setMaximum(65535);
+        hoistPathAddrSpinBox->setDisplayIntegerBase(16);
+
+        gridLayout->addWidget(hoistPathAddrSpinBox, 8, 1, 1, 1);
+
+        hoistPathSpinBox = new QSpinBox(parametersGroup);
+        hoistPathSpinBox->setObjectName(QString::fromUtf8("hoistPathSpinBox"));
+        hoistPathSpinBox->setMinimum(0);
+        hoistPathSpinBox->setMaximum(65535);
+
+        gridLayout->addWidget(hoistPathSpinBox, 8, 2, 1, 1);
+
         sendButton = new QPushButton(parametersGroup);
         sendButton->setObjectName(QString::fromUtf8("sendButton"));
 
-        gridLayout->addWidget(sendButton, 5, 1, 1, 2);
+        gridLayout->addWidget(sendButton, 9, 1, 1, 2);
 
 
         horizontalLayout->addWidget(parametersGroup);
@@ -287,9 +383,21 @@ public:
         label_2->setText(QCoreApplication::translate("MainWindow", "Address", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "Value", nullptr));
         controlModeLabel->setText(QCoreApplication::translate("MainWindow", "Control Mode", nullptr));
+        controlModeAddrSpinBox->setPrefix(QCoreApplication::translate("MainWindow", "0x", nullptr));
         slewSpeedLabel->setText(QCoreApplication::translate("MainWindow", "Slew Speed", nullptr));
+        slewSpeedAddrSpinBox->setPrefix(QCoreApplication::translate("MainWindow", "0x", nullptr));
         luffSpeedLabel->setText(QCoreApplication::translate("MainWindow", "Luff Speed", nullptr));
+        luffSpeedAddrSpinBox->setPrefix(QCoreApplication::translate("MainWindow", "0x", nullptr));
         hoistSpeedLabel->setText(QCoreApplication::translate("MainWindow", "Hoist Speed", nullptr));
+        hoistSpeedAddrSpinBox->setPrefix(QCoreApplication::translate("MainWindow", "0x", nullptr));
+        pathLengthLabel->setText(QCoreApplication::translate("MainWindow", "Path Length", nullptr));
+        pathLengthAddrSpinBox->setPrefix(QCoreApplication::translate("MainWindow", "0x", nullptr));
+        slewPathLabel->setText(QCoreApplication::translate("MainWindow", "Slew Path", nullptr));
+        slewPathAddrSpinBox->setPrefix(QCoreApplication::translate("MainWindow", "0x", nullptr));
+        luffPathLabel->setText(QCoreApplication::translate("MainWindow", "Luff Path", nullptr));
+        luffPathAddrSpinBox->setPrefix(QCoreApplication::translate("MainWindow", "0x", nullptr));
+        hoistPathLabel->setText(QCoreApplication::translate("MainWindow", "Hoist Path", nullptr));
+        hoistPathAddrSpinBox->setPrefix(QCoreApplication::translate("MainWindow", "0x", nullptr));
         sendButton->setText(QCoreApplication::translate("MainWindow", "Send", nullptr));
         connectionGroup->setTitle(QCoreApplication::translate("MainWindow", "Connection Settings", nullptr));
         ipLabel->setText(QCoreApplication::translate("MainWindow", "Server IP:", nullptr));
