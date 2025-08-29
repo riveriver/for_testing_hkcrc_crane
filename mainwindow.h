@@ -24,11 +24,17 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QTcpSocket *modbusSocket;
-    void setupModbusClient(const QString &ip, quint16 port);
     void setupUI();
+    void setupModbusClient(const QString &ip, quint16 port);
     void logMessage(const QString &msg);
+    void toggleMessageScrolling();
+    void clearMessages();
     void saveParameters();
     void loadParameters();
     quint8 getFunctionCode() const;
+    
+private:
+    bool m_messageScrollingEnabled;
+    QString m_messageBuffer;
 };
 #endif // MAINWINDOW_H

@@ -35,6 +35,9 @@ public:
     QGroupBox *messagesGroup;
     QVBoxLayout *verticalLayout_2;
     QPlainTextEdit *messageTextEdit;
+    QHBoxLayout *messageButtonsLayout;
+    QPushButton *pauseResumeButton;
+    QPushButton *clearMessagesButton;
     QWidget *bottomWidget;
     QHBoxLayout *horizontalLayout;
     QGroupBox *parametersGroup;
@@ -114,8 +117,30 @@ public:
         messageTextEdit = new QPlainTextEdit(messagesGroup);
         messageTextEdit->setObjectName(QString::fromUtf8("messageTextEdit"));
         messageTextEdit->setReadOnly(true);
+        messageTextEdit->setMinimumHeight(300);
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(1);
+        sizePolicy.setHeightForWidth(messageTextEdit->sizePolicy().hasHeightForWidth());
+        messageTextEdit->setSizePolicy(sizePolicy);
 
         verticalLayout_2->addWidget(messageTextEdit);
+
+        messageButtonsLayout = new QHBoxLayout();
+        messageButtonsLayout->setSpacing(6);
+        messageButtonsLayout->setObjectName(QString::fromUtf8("messageButtonsLayout"));
+        pauseResumeButton = new QPushButton(messagesGroup);
+        pauseResumeButton->setObjectName(QString::fromUtf8("pauseResumeButton"));
+
+        messageButtonsLayout->addWidget(pauseResumeButton);
+
+        clearMessagesButton = new QPushButton(messagesGroup);
+        clearMessagesButton->setObjectName(QString::fromUtf8("clearMessagesButton"));
+
+        messageButtonsLayout->addWidget(clearMessagesButton);
+
+
+        verticalLayout_2->addLayout(messageButtonsLayout);
 
 
         verticalLayout->addWidget(messagesGroup);
@@ -128,11 +153,11 @@ public:
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         parametersGroup = new QGroupBox(bottomWidget);
         parametersGroup->setObjectName(QString::fromUtf8("parametersGroup"));
-        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-        sizePolicy.setHorizontalStretch(3);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(parametersGroup->sizePolicy().hasHeightForWidth());
-        parametersGroup->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(3);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(parametersGroup->sizePolicy().hasHeightForWidth());
+        parametersGroup->setSizePolicy(sizePolicy1);
         gridLayout = new QGridLayout(parametersGroup);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
@@ -427,11 +452,11 @@ public:
 
         connectionGroup = new QGroupBox(bottomWidget);
         connectionGroup->setObjectName(QString::fromUtf8("connectionGroup"));
-        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Preferred);
-        sizePolicy1.setHorizontalStretch(1);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(connectionGroup->sizePolicy().hasHeightForWidth());
-        connectionGroup->setSizePolicy(sizePolicy1);
+        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Preferred);
+        sizePolicy2.setHorizontalStretch(1);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(connectionGroup->sizePolicy().hasHeightForWidth());
+        connectionGroup->setSizePolicy(sizePolicy2);
         connectionGroup->setMinimumWidth(300);
         connectionGroup->setMaximumWidth(300);
         formLayout_2 = new QFormLayout(connectionGroup);
@@ -510,6 +535,8 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "For HKCRC Crane Testing", nullptr));
         messagesGroup->setTitle(QCoreApplication::translate("MainWindow", "Messages", nullptr));
+        pauseResumeButton->setText(QCoreApplication::translate("MainWindow", "Pause Scrolling", nullptr));
+        clearMessagesButton->setText(QCoreApplication::translate("MainWindow", "Clear", nullptr));
         parametersGroup->setTitle(QCoreApplication::translate("MainWindow", "Modbus Parameters", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Parameter", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Address", nullptr));

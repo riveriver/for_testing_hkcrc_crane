@@ -31,6 +31,13 @@ void MainWindow::setupUI()
     connect(ui->connectButton, &QPushButton::clicked, this, &MainWindow::onConnectButtonClicked);
     connect(ui->registerTypeCombo, QOverload<int>::of(&QComboBox::currentIndexChanged),
             this, &MainWindow::onRegisterTypeChanged);
+    
+    // 连接消息栏按钮信号
+    connect(ui->pauseResumeButton, &QPushButton::clicked, this, &MainWindow::toggleMessageScrolling);
+    connect(ui->clearMessagesButton, &QPushButton::clicked, this, &MainWindow::clearMessages);
+    
+    // 初始化消息滚动状态
+    m_messageScrollingEnabled = true;
 }
 
 void MainWindow::setupModbusClient(const QString &ip, quint16 port)
@@ -287,5 +294,32 @@ void MainWindow::onSendButtonClicked()
 
 void MainWindow::logMessage(const QString &msg)
 {
-    ui->messageTextEdit->appendPlainText(QDateTime::currentDateTime().toString() + ": " + msg);
+    if (m_messageScrollingEnabled) {
+        ui->messageTextEdit->appendPlainText(QDateTime::currentDateTime().toString() + ": " + msg);
+    } else {
+        // 如果暂停滚动，将消息添加到缓冲区
+        m_messageBuffer.append(QDateTime::currentDateTime().toString() + ": " + msg + "\n");
+    }
+}
+
+void MainWindow::toggleMessageScrolling()
+{
+    m_messageScrollingEnabled = !m_messageScrollingEnabled;
+    
+    if (m_messageScrollingEnabled) {
+        ui->pauseResumeButton->setText("Pause Scrolling");
+        // 恢复滚动时，输出缓冲区中的消息
+        if (!m_messageBuffer.isEmpty()) {
+            ui->messageTextEdit->appendPlainText(m_messageBuffer);
+            m_messageBuffer.clear();
+        }
+    } else {
+        ui->pauseResumeButton->setText("Resume scrolling");
+    }
+}
+
+void MainWindow::clearMessages()
+{
+    ui->messageTextEdit->clear();
+    m_messageBuffer.clear();
 }
