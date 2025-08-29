@@ -59,13 +59,28 @@ public:
     QSpinBox *pathLengthSpinBox;
     QLabel *slewPathLabel;
     QSpinBox *slewPathAddrSpinBox;
-    QSpinBox *slewPathSpinBox;
+    QHBoxLayout *horizontalLayout_3;
+    QSpinBox *slewPathSpinBox1;
+    QSpinBox *slewPathSpinBox2;
+    QSpinBox *slewPathSpinBox3;
+    QSpinBox *slewPathSpinBox4;
+    QSpinBox *slewPathSpinBox5;
     QLabel *luffPathLabel;
     QSpinBox *luffPathAddrSpinBox;
-    QSpinBox *luffPathSpinBox;
+    QHBoxLayout *horizontalLayout_4;
+    QSpinBox *luffPathSpinBox1;
+    QSpinBox *luffPathSpinBox2;
+    QSpinBox *luffPathSpinBox3;
+    QSpinBox *luffPathSpinBox4;
+    QSpinBox *luffPathSpinBox5;
     QLabel *hoistPathLabel;
     QSpinBox *hoistPathAddrSpinBox;
-    QSpinBox *hoistPathSpinBox;
+    QHBoxLayout *horizontalLayout_5;
+    QSpinBox *hoistPathSpinBox1;
+    QSpinBox *hoistPathSpinBox2;
+    QSpinBox *hoistPathSpinBox3;
+    QSpinBox *hoistPathSpinBox4;
+    QSpinBox *hoistPathSpinBox5;
     QPushButton *sendButton;
     QGroupBox *connectionGroup;
     QFormLayout *formLayout_2;
@@ -247,15 +262,50 @@ public:
         slewPathAddrSpinBox->setMinimum(5);
         slewPathAddrSpinBox->setMaximum(65535);
         slewPathAddrSpinBox->setDisplayIntegerBase(16);
+        slewPathAddrSpinBox->setValue(5);
 
         gridLayout->addWidget(slewPathAddrSpinBox, 6, 1, 1, 1);
 
-        slewPathSpinBox = new QSpinBox(parametersGroup);
-        slewPathSpinBox->setObjectName(QString::fromUtf8("slewPathSpinBox"));
-        slewPathSpinBox->setMinimum(0);
-        slewPathSpinBox->setMaximum(65535);
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setSpacing(6);
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        slewPathSpinBox1 = new QSpinBox(parametersGroup);
+        slewPathSpinBox1->setObjectName(QString::fromUtf8("slewPathSpinBox1"));
+        slewPathSpinBox1->setMinimum(0);
+        slewPathSpinBox1->setMaximum(65535);
 
-        gridLayout->addWidget(slewPathSpinBox, 6, 2, 1, 1);
+        horizontalLayout_3->addWidget(slewPathSpinBox1);
+
+        slewPathSpinBox2 = new QSpinBox(parametersGroup);
+        slewPathSpinBox2->setObjectName(QString::fromUtf8("slewPathSpinBox2"));
+        slewPathSpinBox2->setMinimum(0);
+        slewPathSpinBox2->setMaximum(65535);
+
+        horizontalLayout_3->addWidget(slewPathSpinBox2);
+
+        slewPathSpinBox3 = new QSpinBox(parametersGroup);
+        slewPathSpinBox3->setObjectName(QString::fromUtf8("slewPathSpinBox3"));
+        slewPathSpinBox3->setMinimum(0);
+        slewPathSpinBox3->setMaximum(65535);
+
+        horizontalLayout_3->addWidget(slewPathSpinBox3);
+
+        slewPathSpinBox4 = new QSpinBox(parametersGroup);
+        slewPathSpinBox4->setObjectName(QString::fromUtf8("slewPathSpinBox4"));
+        slewPathSpinBox4->setMinimum(0);
+        slewPathSpinBox4->setMaximum(65535);
+
+        horizontalLayout_3->addWidget(slewPathSpinBox4);
+
+        slewPathSpinBox5 = new QSpinBox(parametersGroup);
+        slewPathSpinBox5->setObjectName(QString::fromUtf8("slewPathSpinBox5"));
+        slewPathSpinBox5->setMinimum(0);
+        slewPathSpinBox5->setMaximum(65535);
+
+        horizontalLayout_3->addWidget(slewPathSpinBox5);
+
+
+        gridLayout->addLayout(horizontalLayout_3, 6, 2, 1, 1);
 
         luffPathLabel = new QLabel(parametersGroup);
         luffPathLabel->setObjectName(QString::fromUtf8("luffPathLabel"));
@@ -267,15 +317,50 @@ public:
         luffPathAddrSpinBox->setMinimum(6);
         luffPathAddrSpinBox->setMaximum(65535);
         luffPathAddrSpinBox->setDisplayIntegerBase(16);
+        luffPathAddrSpinBox->setValue(10);
 
         gridLayout->addWidget(luffPathAddrSpinBox, 7, 1, 1, 1);
 
-        luffPathSpinBox = new QSpinBox(parametersGroup);
-        luffPathSpinBox->setObjectName(QString::fromUtf8("luffPathSpinBox"));
-        luffPathSpinBox->setMinimum(0);
-        luffPathSpinBox->setMaximum(65535);
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setSpacing(6);
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+        luffPathSpinBox1 = new QSpinBox(parametersGroup);
+        luffPathSpinBox1->setObjectName(QString::fromUtf8("luffPathSpinBox1"));
+        luffPathSpinBox1->setMinimum(0);
+        luffPathSpinBox1->setMaximum(65535);
 
-        gridLayout->addWidget(luffPathSpinBox, 7, 2, 1, 1);
+        horizontalLayout_4->addWidget(luffPathSpinBox1);
+
+        luffPathSpinBox2 = new QSpinBox(parametersGroup);
+        luffPathSpinBox2->setObjectName(QString::fromUtf8("luffPathSpinBox2"));
+        luffPathSpinBox2->setMinimum(0);
+        luffPathSpinBox2->setMaximum(65535);
+
+        horizontalLayout_4->addWidget(luffPathSpinBox2);
+
+        luffPathSpinBox3 = new QSpinBox(parametersGroup);
+        luffPathSpinBox3->setObjectName(QString::fromUtf8("luffPathSpinBox3"));
+        luffPathSpinBox3->setMinimum(0);
+        luffPathSpinBox3->setMaximum(65535);
+
+        horizontalLayout_4->addWidget(luffPathSpinBox3);
+
+        luffPathSpinBox4 = new QSpinBox(parametersGroup);
+        luffPathSpinBox4->setObjectName(QString::fromUtf8("luffPathSpinBox4"));
+        luffPathSpinBox4->setMinimum(0);
+        luffPathSpinBox4->setMaximum(65535);
+
+        horizontalLayout_4->addWidget(luffPathSpinBox4);
+
+        luffPathSpinBox5 = new QSpinBox(parametersGroup);
+        luffPathSpinBox5->setObjectName(QString::fromUtf8("luffPathSpinBox5"));
+        luffPathSpinBox5->setMinimum(0);
+        luffPathSpinBox5->setMaximum(65535);
+
+        horizontalLayout_4->addWidget(luffPathSpinBox5);
+
+
+        gridLayout->addLayout(horizontalLayout_4, 7, 2, 1, 1);
 
         hoistPathLabel = new QLabel(parametersGroup);
         hoistPathLabel->setObjectName(QString::fromUtf8("hoistPathLabel"));
@@ -287,15 +372,50 @@ public:
         hoistPathAddrSpinBox->setMinimum(7);
         hoistPathAddrSpinBox->setMaximum(65535);
         hoistPathAddrSpinBox->setDisplayIntegerBase(16);
+        hoistPathAddrSpinBox->setValue(15);
 
         gridLayout->addWidget(hoistPathAddrSpinBox, 8, 1, 1, 1);
 
-        hoistPathSpinBox = new QSpinBox(parametersGroup);
-        hoistPathSpinBox->setObjectName(QString::fromUtf8("hoistPathSpinBox"));
-        hoistPathSpinBox->setMinimum(0);
-        hoistPathSpinBox->setMaximum(65535);
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setSpacing(6);
+        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        hoistPathSpinBox1 = new QSpinBox(parametersGroup);
+        hoistPathSpinBox1->setObjectName(QString::fromUtf8("hoistPathSpinBox1"));
+        hoistPathSpinBox1->setMinimum(0);
+        hoistPathSpinBox1->setMaximum(65535);
 
-        gridLayout->addWidget(hoistPathSpinBox, 8, 2, 1, 1);
+        horizontalLayout_5->addWidget(hoistPathSpinBox1);
+
+        hoistPathSpinBox2 = new QSpinBox(parametersGroup);
+        hoistPathSpinBox2->setObjectName(QString::fromUtf8("hoistPathSpinBox2"));
+        hoistPathSpinBox2->setMinimum(0);
+        hoistPathSpinBox2->setMaximum(65535);
+
+        horizontalLayout_5->addWidget(hoistPathSpinBox2);
+
+        hoistPathSpinBox3 = new QSpinBox(parametersGroup);
+        hoistPathSpinBox3->setObjectName(QString::fromUtf8("hoistPathSpinBox3"));
+        hoistPathSpinBox3->setMinimum(0);
+        hoistPathSpinBox3->setMaximum(65535);
+
+        horizontalLayout_5->addWidget(hoistPathSpinBox3);
+
+        hoistPathSpinBox4 = new QSpinBox(parametersGroup);
+        hoistPathSpinBox4->setObjectName(QString::fromUtf8("hoistPathSpinBox4"));
+        hoistPathSpinBox4->setMinimum(0);
+        hoistPathSpinBox4->setMaximum(65535);
+
+        horizontalLayout_5->addWidget(hoistPathSpinBox4);
+
+        hoistPathSpinBox5 = new QSpinBox(parametersGroup);
+        hoistPathSpinBox5->setObjectName(QString::fromUtf8("hoistPathSpinBox5"));
+        hoistPathSpinBox5->setMinimum(0);
+        hoistPathSpinBox5->setMaximum(65535);
+
+        horizontalLayout_5->addWidget(hoistPathSpinBox5);
+
+
+        gridLayout->addLayout(horizontalLayout_5, 8, 2, 1, 1);
 
         sendButton = new QPushButton(parametersGroup);
         sendButton->setObjectName(QString::fromUtf8("sendButton"));

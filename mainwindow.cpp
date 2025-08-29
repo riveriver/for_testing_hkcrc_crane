@@ -115,11 +115,23 @@ void MainWindow::onSendButtonClicked()
     quint16 pathLengthAddr = ui->pathLengthAddrSpinBox->value();
     quint16 pathLengthValue = ui->pathLengthSpinBox->value();
     quint16 slewPathAddr = ui->slewPathAddrSpinBox->value();
-    quint16 slewPathValue = ui->slewPathSpinBox->value();
+    quint16 slewPathValue1 = ui->slewPathSpinBox1->value();
+    quint16 slewPathValue2 = ui->slewPathSpinBox2->value();
+    quint16 slewPathValue3 = ui->slewPathSpinBox3->value();
+    quint16 slewPathValue4 = ui->slewPathSpinBox4->value();
+    quint16 slewPathValue5 = ui->slewPathSpinBox5->value();
     quint16 luffPathAddr = ui->luffPathAddrSpinBox->value();
-    quint16 luffPathValue = ui->luffPathSpinBox->value();
+    quint16 luffPathValue1 = ui->luffPathSpinBox1->value();
+    quint16 luffPathValue2 = ui->luffPathSpinBox2->value();
+    quint16 luffPathValue3 = ui->luffPathSpinBox3->value();
+    quint16 luffPathValue4 = ui->luffPathSpinBox4->value();
+    quint16 luffPathValue5 = ui->luffPathSpinBox5->value();
     quint16 hoistPathAddr = ui->hoistPathAddrSpinBox->value();
-    quint16 hoistPathValue = ui->hoistPathSpinBox->value();
+    quint16 hoistPathValue1 = ui->hoistPathSpinBox1->value();
+    quint16 hoistPathValue2 = ui->hoistPathSpinBox2->value();
+    quint16 hoistPathValue3 = ui->hoistPathSpinBox3->value();
+    quint16 hoistPathValue4 = ui->hoistPathSpinBox4->value();
+    quint16 hoistPathValue5 = ui->hoistPathSpinBox5->value();
 
     // 创建Modbus TCP请求帧
     QByteArray request;
@@ -138,16 +150,28 @@ void MainWindow::onSendButtonClicked()
     // 根据寄存器类型构建请求体
     if (functionCode == 0x10) { // Write Multiple Holding Registers
         stream << controlModeAddr; // Starting address
-        stream << quint16(8);      // Quantity of registers
-        stream << quint8(16);       // Byte count
+        stream << quint16(22);      // Quantity of registers (原12 + 新增10)
+        stream << quint8(44);       // Byte count (原24 + 新增20)
         stream << controlModeValue;
         stream << slewSpeedValue;
         stream << luffSpeedValue;
         stream << hoistSpeedValue;
         stream << pathLengthValue;
-        stream << slewPathValue;
-        stream << luffPathValue;
-        stream << hoistPathValue;
+        stream << slewPathValue1;
+        stream << slewPathValue2;
+        stream << slewPathValue3;
+        stream << slewPathValue4;
+        stream << slewPathValue5;
+        stream << luffPathValue1;
+        stream << luffPathValue2;
+        stream << luffPathValue3;
+        stream << luffPathValue4;
+        stream << luffPathValue5;
+        stream << hoistPathValue1;
+        stream << hoistPathValue2;
+        stream << hoistPathValue3;
+        stream << hoistPathValue4;
+        stream << hoistPathValue5;
     } else if (functionCode == 0x06) { // Write Single Register
         stream << controlModeAddr;
         stream << controlModeValue;
