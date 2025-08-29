@@ -36,6 +36,12 @@
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <widget class="QGroupBox" name="parametersGroup">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>3</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="title">
           <string>Modbus Parameters</string>
          </property>
@@ -337,6 +343,18 @@
        </item>
        <item>
         <widget class="QGroupBox" name="connectionGroup">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumWidth">
+          <number>300</number>
+         </property>
+         <property name="maximumWidth">
+          <number>300</number>
+         </property>
          <property name="title">
           <string>Connection Settings</string>
          </property>

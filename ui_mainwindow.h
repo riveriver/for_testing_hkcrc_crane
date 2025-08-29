@@ -113,6 +113,11 @@ public:
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         parametersGroup = new QGroupBox(bottomWidget);
         parametersGroup->setObjectName(QString::fromUtf8("parametersGroup"));
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(3);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(parametersGroup->sizePolicy().hasHeightForWidth());
+        parametersGroup->setSizePolicy(sizePolicy);
         gridLayout = new QGridLayout(parametersGroup);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
@@ -302,6 +307,13 @@ public:
 
         connectionGroup = new QGroupBox(bottomWidget);
         connectionGroup->setObjectName(QString::fromUtf8("connectionGroup"));
+        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(1);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(connectionGroup->sizePolicy().hasHeightForWidth());
+        connectionGroup->setSizePolicy(sizePolicy1);
+        connectionGroup->setMinimumWidth(300);
+        connectionGroup->setMaximumWidth(300);
         formLayout_2 = new QFormLayout(connectionGroup);
         formLayout_2->setSpacing(6);
         formLayout_2->setContentsMargins(11, 11, 11, 11);
