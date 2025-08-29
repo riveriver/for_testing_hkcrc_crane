@@ -53,13 +53,13 @@ void MainWindow::setupModbusClient(const QString &ip, quint16 port)
     
     modbusSocket = new QTcpSocket(this);
     connect(modbusSocket, &QTcpSocket::connected, this, [this]() {
-        logMessage("Connected to Modbus server");
+        this->logMessage("Connected to Modbus server");
     });
     connect(modbusSocket, &QTcpSocket::disconnected, this, [this]() {
-        logMessage("Disconnected from Modbus server");
+        this->logMessage("Disconnected from Modbus server");
     });
     connect(modbusSocket, &QTcpSocket::errorOccurred, this, [this](QAbstractSocket::SocketError) {
-        logMessage("Connection error: " + modbusSocket->errorString());
+        this->logMessage("Connection error: " + modbusSocket->errorString());
     });
     
     logMessage(QString("Connecting to %1:%2...").arg(ip).arg(port));
@@ -208,8 +208,6 @@ void MainWindow::onSendButtonClicked()
     // 读取参数地址和值
     quint16 controlModeAddr = ui->controlModeAddrSpinBox->value();
     quint16 controlModeValue = ui->controlModeSpinBox->value();
-    // 这个变量在后续代码中没有使用，可以移除
-    // quint16 slewSpeedAddr = ui->slewSpeedSpinBox->value();
     quint16 slewSpeedValue = ui->slewSpeedSpinBox->value();
     quint16 luffSpeedValue = ui->luffSpeedSpinBox->value();
     quint16 hoistSpeedValue = ui->hoistSpeedSpinBox->value();
@@ -287,8 +285,46 @@ void MainWindow::onSendButtonClicked()
 
     if (modbusSocket->write(request) != -1) {
         logMessage("Modbus request data: " + request.toHex(' '));
+        // 记录发送时间
+        m_responseTimer.start();
+        logMessage("Request sent at: " + QDateTime::currentDateTime().toString("hh:mm:ss.zzz"));
+        // 连接readyRead信号到处理槽函数
+        connect(modbusSocket, &QTcpSocket::readyRead, this, &MainWindow::onModbusReplyReady);
+        // 设置5秒超时
+        QTimer* timeoutTimer = new QTimer(this);
+        timeoutTimer->setSingleShot(true);
+        connect(timeoutTimer, &QTimer::timeout, this, [this](){
+            this->logMessage("Timeout waiting for Modbus response");
+            disconnect(modbusSocket, &QTcpSocket::readyRead, this, &MainWindow::onModbusReplyReady);
+        });
+        connect(this, &MainWindow::destroyed, timeoutTimer, &QTimer::deleteLater);
+        timeoutTimer->start(5000);
+        
+        // 存储定时器指针以便取消
+        m_timeoutTimer = timeoutTimer;
     } else {
         logMessage("Write request failed: " + modbusSocket->errorString());
+    }
+}
+
+void MainWindow::onModbusReplyReady()
+{
+    QByteArray response = modbusSocket->readAll();
+    logMessage("Modbus response: " + response.toHex(' '));
+    
+    // 计算并显示响应时间
+    qint64 elapsedMs = m_responseTimer.elapsed();
+    logMessage(QString("Response time: %1 ms").arg(elapsedMs));
+    logMessage("Response received at: " + QDateTime::currentDateTime().toString("hh:mm:ss.zzz"));
+    
+    // 断开readyRead信号连接，避免重复处理
+    disconnect(modbusSocket, &QTcpSocket::readyRead, this, &MainWindow::onModbusReplyReady);
+    
+    // 取消超时定时器
+    if (m_timeoutTimer) {
+        m_timeoutTimer->stop();
+        m_timeoutTimer->deleteLater();
+        m_timeoutTimer = nullptr;
     }
 }
 

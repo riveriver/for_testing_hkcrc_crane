@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTcpSocket>
+#include <QElapsedTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -26,15 +27,18 @@ private:
     QTcpSocket *modbusSocket;
     void setupUI();
     void setupModbusClient(const QString &ip, quint16 port);
-    void logMessage(const QString &msg);
     void toggleMessageScrolling();
     void clearMessages();
     void saveParameters();
     void loadParameters();
+    void logMessage(const QString &msg);
     quint8 getFunctionCode() const;
+    void onModbusReplyReady();
     
 private:
     bool m_messageScrollingEnabled;
     QString m_messageBuffer;
+    QTimer* m_timeoutTimer;
+    QElapsedTimer m_responseTimer;
 };
 #endif // MAINWINDOW_H
