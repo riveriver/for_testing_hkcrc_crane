@@ -27,6 +27,8 @@ private:
     void setupModbusClient(const QString &ip, quint16 port);
     void setupUI();
     void logMessage(const QString &msg);
+    void saveParameters();
+    void loadParameters();
     quint8 getFunctionCode() const;
 };
 #endif // MAINWINDOW_H

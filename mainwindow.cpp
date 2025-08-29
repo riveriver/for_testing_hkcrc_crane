@@ -5,6 +5,7 @@
 #include <QDateTime>
 #include <QThread>
 #include <QTimer>
+#include <QSettings>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -12,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     , modbusSocket(nullptr)
 {
     setupUI();
+    loadParameters();  // 加载保存的参数
     setupModbusClient(ui->ipEdit->text(), static_cast<quint16>(ui->portSpinBox->value()));
 }
 
@@ -93,12 +95,105 @@ void MainWindow::onRegisterTypeChanged(int index)
     ui->hoistSpeedSpinBox->setVisible(isRegister);
 }
 
+void MainWindow::saveParameters()
+{
+    QSettings settings("HKCRC", "CraneTesting");
+    
+    // 保存连接参数
+    settings.setValue("ip", ui->ipEdit->text());
+    settings.setValue("port", ui->portSpinBox->value());
+    settings.setValue("slave", ui->slaveSpinBox->value());
+    settings.setValue("registerType", ui->registerTypeCombo->currentIndex());
+    
+    // 保存Modbus参数
+    settings.setValue("controlModeAddr", ui->controlModeAddrSpinBox->value());
+    settings.setValue("controlModeValue", ui->controlModeSpinBox->value());
+    settings.setValue("slewSpeedAddr", ui->slewSpeedAddrSpinBox->value());
+    settings.setValue("slewSpeedValue", ui->slewSpeedSpinBox->value());
+    settings.setValue("luffSpeedAddr", ui->luffSpeedAddrSpinBox->value());
+    settings.setValue("luffSpeedValue", ui->luffSpeedSpinBox->value());
+    settings.setValue("hoistSpeedAddr", ui->hoistSpeedAddrSpinBox->value());
+    settings.setValue("hoistSpeedValue", ui->hoistSpeedSpinBox->value());
+    settings.setValue("pathLengthAddr", ui->pathLengthAddrSpinBox->value());
+    settings.setValue("pathLengthValue", ui->pathLengthSpinBox->value());
+    
+    // 保存路径参数
+    settings.setValue("slewPathAddr", ui->slewPathAddrSpinBox->value());
+    settings.setValue("slewPathValue1", ui->slewPathSpinBox1->value());
+    settings.setValue("slewPathValue2", ui->slewPathSpinBox2->value());
+    settings.setValue("slewPathValue3", ui->slewPathSpinBox3->value());
+    settings.setValue("slewPathValue4", ui->slewPathSpinBox4->value());
+    settings.setValue("slewPathValue5", ui->slewPathSpinBox5->value());
+    
+    settings.setValue("luffPathAddr", ui->luffPathAddrSpinBox->value());
+    settings.setValue("luffPathValue1", ui->luffPathSpinBox1->value());
+    settings.setValue("luffPathValue2", ui->luffPathSpinBox2->value());
+    settings.setValue("luffPathValue3", ui->luffPathSpinBox3->value());
+    settings.setValue("luffPathValue4", ui->luffPathSpinBox4->value());
+    settings.setValue("luffPathValue5", ui->luffPathSpinBox5->value());
+    
+    settings.setValue("hoistPathAddr", ui->hoistPathAddrSpinBox->value());
+    settings.setValue("hoistPathValue1", ui->hoistPathSpinBox1->value());
+    settings.setValue("hoistPathValue2", ui->hoistPathSpinBox2->value());
+    settings.setValue("hoistPathValue3", ui->hoistPathSpinBox3->value());
+    settings.setValue("hoistPathValue4", ui->hoistPathSpinBox4->value());
+    settings.setValue("hoistPathValue5", ui->hoistPathSpinBox5->value());
+}
+
+void MainWindow::loadParameters()
+{
+    QSettings settings("HKCRC", "CraneTesting");
+    
+    // 加载连接参数
+    ui->ipEdit->setText(settings.value("ip", "192.168.1.100").toString());
+    ui->portSpinBox->setValue(settings.value("port", 502).toInt());
+    ui->slaveSpinBox->setValue(settings.value("slave", 1).toInt());
+    ui->registerTypeCombo->setCurrentIndex(settings.value("registerType", 0).toInt());
+    
+    // 加载Modbus参数
+    ui->controlModeAddrSpinBox->setValue(settings.value("controlModeAddr", 0).toInt());
+    ui->controlModeSpinBox->setValue(settings.value("controlModeValue", 0).toInt());
+    ui->slewSpeedAddrSpinBox->setValue(settings.value("slewSpeedAddr", 1).toInt());
+    ui->slewSpeedSpinBox->setValue(settings.value("slewSpeedValue", 0).toInt());
+    ui->luffSpeedAddrSpinBox->setValue(settings.value("luffSpeedAddr", 2).toInt());
+    ui->luffSpeedSpinBox->setValue(settings.value("luffSpeedValue", 0).toInt());
+    ui->hoistSpeedAddrSpinBox->setValue(settings.value("hoistSpeedAddr", 3).toInt());
+    ui->hoistSpeedSpinBox->setValue(settings.value("hoistSpeedValue", 0).toInt());
+    ui->pathLengthAddrSpinBox->setValue(settings.value("pathLengthAddr", 4).toInt());
+    ui->pathLengthSpinBox->setValue(settings.value("pathLengthValue", 0).toInt());
+    
+    // 加载路径参数
+    ui->slewPathAddrSpinBox->setValue(settings.value("slewPathAddr", 5).toInt());
+    ui->slewPathSpinBox1->setValue(settings.value("slewPathValue1", 0).toInt());
+    ui->slewPathSpinBox2->setValue(settings.value("slewPathValue2", 0).toInt());
+    ui->slewPathSpinBox3->setValue(settings.value("slewPathValue3", 0).toInt());
+    ui->slewPathSpinBox4->setValue(settings.value("slewPathValue4", 0).toInt());
+    ui->slewPathSpinBox5->setValue(settings.value("slewPathValue5", 0).toInt());
+    
+    ui->luffPathAddrSpinBox->setValue(settings.value("luffPathAddr", 6).toInt());
+    ui->luffPathSpinBox1->setValue(settings.value("luffPathValue1", 0).toInt());
+    ui->luffPathSpinBox2->setValue(settings.value("luffPathValue2", 0).toInt());
+    ui->luffPathSpinBox3->setValue(settings.value("luffPathValue3", 0).toInt());
+    ui->luffPathSpinBox4->setValue(settings.value("luffPathValue4", 0).toInt());
+    ui->luffPathSpinBox5->setValue(settings.value("luffPathValue5", 0).toInt());
+    
+    ui->hoistPathAddrSpinBox->setValue(settings.value("hoistPathAddr", 7).toInt());
+    ui->hoistPathSpinBox1->setValue(settings.value("hoistPathValue1", 0).toInt());
+    ui->hoistPathSpinBox2->setValue(settings.value("hoistPathValue2", 0).toInt());
+    ui->hoistPathSpinBox3->setValue(settings.value("hoistPathValue3", 0).toInt());
+    ui->hoistPathSpinBox4->setValue(settings.value("hoistPathValue4", 0).toInt());
+    ui->hoistPathSpinBox5->setValue(settings.value("hoistPathValue5", 0).toInt());
+}
+
 void MainWindow::onSendButtonClicked()
 {
     if (!modbusSocket || modbusSocket->state() != QTcpSocket::ConnectedState) {
         logMessage("Modbus socket not connected");
         return;
     }
+    
+    // 保存当前参数
+    saveParameters();
 
     // 读取连接参数
     quint8 slaveAddr = static_cast<quint8>(ui->slaveSpinBox->value());
@@ -106,27 +201,22 @@ void MainWindow::onSendButtonClicked()
     // 读取参数地址和值
     quint16 controlModeAddr = ui->controlModeAddrSpinBox->value();
     quint16 controlModeValue = ui->controlModeSpinBox->value();
-    quint16 slewSpeedAddr = ui->slewSpeedSpinBox->value();
+    // 这个变量在后续代码中没有使用，可以移除
+    // quint16 slewSpeedAddr = ui->slewSpeedSpinBox->value();
     quint16 slewSpeedValue = ui->slewSpeedSpinBox->value();
-    quint16 luffSpeedAddr = ui->luffSpeedSpinBox->value();
     quint16 luffSpeedValue = ui->luffSpeedSpinBox->value();
-    quint16 hoistSpeedAddr = ui->hoistSpeedSpinBox->value();
     quint16 hoistSpeedValue = ui->hoistSpeedSpinBox->value();
-    quint16 pathLengthAddr = ui->pathLengthAddrSpinBox->value();
     quint16 pathLengthValue = ui->pathLengthSpinBox->value();
-    quint16 slewPathAddr = ui->slewPathAddrSpinBox->value();
     quint16 slewPathValue1 = ui->slewPathSpinBox1->value();
     quint16 slewPathValue2 = ui->slewPathSpinBox2->value();
     quint16 slewPathValue3 = ui->slewPathSpinBox3->value();
     quint16 slewPathValue4 = ui->slewPathSpinBox4->value();
     quint16 slewPathValue5 = ui->slewPathSpinBox5->value();
-    quint16 luffPathAddr = ui->luffPathAddrSpinBox->value();
     quint16 luffPathValue1 = ui->luffPathSpinBox1->value();
     quint16 luffPathValue2 = ui->luffPathSpinBox2->value();
     quint16 luffPathValue3 = ui->luffPathSpinBox3->value();
     quint16 luffPathValue4 = ui->luffPathSpinBox4->value();
     quint16 luffPathValue5 = ui->luffPathSpinBox5->value();
-    quint16 hoistPathAddr = ui->hoistPathAddrSpinBox->value();
     quint16 hoistPathValue1 = ui->hoistPathSpinBox1->value();
     quint16 hoistPathValue2 = ui->hoistPathSpinBox2->value();
     quint16 hoistPathValue3 = ui->hoistPathSpinBox3->value();
