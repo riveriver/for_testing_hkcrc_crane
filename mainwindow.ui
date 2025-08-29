@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Modbus TCP Master</string>
+   <string>For HKCRC Crane Testing</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -98,7 +98,7 @@
           <item row="2" column="1">
            <widget class="QSpinBox" name="slewSpeedAddrSpinBox">
             <property name="minimum">
-             <number>0</number>
+             <number>1</number>
             </property>
             <property name="maximum">
              <number>65535</number>
@@ -125,7 +125,7 @@
           <item row="3" column="1">
            <widget class="QSpinBox" name="luffSpeedAddrSpinBox">
             <property name="minimum">
-             <number>0</number>
+             <number>2</number>
             </property>
             <property name="maximum">
              <number>65535</number>
@@ -152,7 +152,7 @@
           <item row="4" column="1">
            <widget class="QSpinBox" name="hoistSpeedAddrSpinBox">
             <property name="minimum">
-             <number>0</number>
+             <number>3</number>
             </property>
             <property name="maximum">
              <number>65535</number>
@@ -195,7 +195,7 @@
           <item row="0" column="1">
            <widget class="QLineEdit" name="ipEdit">
             <property name="text">
-             <string>127.0.0.1</string>
+             <string>192.168.1.100</string>
             </property>
            </widget>
           </item>

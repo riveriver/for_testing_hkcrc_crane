@@ -107,11 +107,8 @@ void MainWindow::onSendButtonClicked()
     // 读取参数地址和值
     quint16 controlModeAddr = ui->controlModeAddrSpinBox->value();
     quint16 controlModeValue = ui->controlModeSpinBox->value();
-    quint16 slewSpeedAddr = ui->slewSpeedSpinBox->value();
     quint16 slewSpeedValue = ui->slewSpeedSpinBox->value();
-    quint16 luffSpeedAddr = ui->luffSpeedSpinBox->value();
     quint16 luffSpeedValue = ui->luffSpeedSpinBox->value();
-    quint16 hoistSpeedAddr = ui->hoistSpeedSpinBox->value();
     quint16 hoistSpeedValue = ui->hoistSpeedSpinBox->value();
 
     // 创建Modbus TCP请求帧
@@ -147,12 +144,7 @@ void MainWindow::onSendButtonClicked()
     request[5] = static_cast<char>(request.size() - 6);
 
     if (modbusSocket->write(request) != -1) {
-        logMessage(QString("Sent request: slave=%1, function=%2, control_mode=%3:%4, slew_speed=%5:%6, luff_speed=%7:%8, hoist_speed=%9:%10")
-                  .arg(slaveAddr).arg(functionCode, 2, 16, QChar('0'))
-                  .arg(controlModeAddr).arg(controlModeValue)
-                  .arg(slewSpeedAddr).arg(slewSpeedValue)
-                  .arg(luffSpeedAddr).arg(luffSpeedValue)
-                  .arg(hoistSpeedAddr).arg(hoistSpeedValue));
+        logMessage("Modbus request data: " + request.toHex(' '));
     } else {
         logMessage("Write request failed: " + modbusSocket->errorString());
     }

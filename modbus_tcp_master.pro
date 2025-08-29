@@ -1,6 +1,6 @@
 QT += core gui widgets network
 
-TARGET = modbus_tcp_master
+TARGET = crane_testing
 TEMPLATE = app
 
 SOURCES += \

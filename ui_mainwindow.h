@@ -146,7 +146,7 @@ public:
 
         slewSpeedAddrSpinBox = new QSpinBox(parametersGroup);
         slewSpeedAddrSpinBox->setObjectName(QString::fromUtf8("slewSpeedAddrSpinBox"));
-        slewSpeedAddrSpinBox->setMinimum(0);
+        slewSpeedAddrSpinBox->setMinimum(1);
         slewSpeedAddrSpinBox->setMaximum(65535);
 
         gridLayout->addWidget(slewSpeedAddrSpinBox, 2, 1, 1, 1);
@@ -165,7 +165,7 @@ public:
 
         luffSpeedAddrSpinBox = new QSpinBox(parametersGroup);
         luffSpeedAddrSpinBox->setObjectName(QString::fromUtf8("luffSpeedAddrSpinBox"));
-        luffSpeedAddrSpinBox->setMinimum(0);
+        luffSpeedAddrSpinBox->setMinimum(2);
         luffSpeedAddrSpinBox->setMaximum(65535);
 
         gridLayout->addWidget(luffSpeedAddrSpinBox, 3, 1, 1, 1);
@@ -184,7 +184,7 @@ public:
 
         hoistSpeedAddrSpinBox = new QSpinBox(parametersGroup);
         hoistSpeedAddrSpinBox->setObjectName(QString::fromUtf8("hoistSpeedAddrSpinBox"));
-        hoistSpeedAddrSpinBox->setMinimum(0);
+        hoistSpeedAddrSpinBox->setMinimum(3);
         hoistSpeedAddrSpinBox->setMaximum(65535);
 
         gridLayout->addWidget(hoistSpeedAddrSpinBox, 4, 1, 1, 1);
@@ -280,7 +280,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Modbus TCP Master", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "For HKCRC Crane Testing", nullptr));
         messagesGroup->setTitle(QCoreApplication::translate("MainWindow", "Messages", nullptr));
         parametersGroup->setTitle(QCoreApplication::translate("MainWindow", "Modbus Parameters", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Parameter", nullptr));
@@ -293,7 +293,7 @@ public:
         sendButton->setText(QCoreApplication::translate("MainWindow", "Send", nullptr));
         connectionGroup->setTitle(QCoreApplication::translate("MainWindow", "Connection Settings", nullptr));
         ipLabel->setText(QCoreApplication::translate("MainWindow", "Server IP:", nullptr));
-        ipEdit->setText(QCoreApplication::translate("MainWindow", "127.0.0.1", nullptr));
+        ipEdit->setText(QCoreApplication::translate("MainWindow", "192.168.1.100", nullptr));
         portLabel->setText(QCoreApplication::translate("MainWindow", "Port:", nullptr));
         slaveLabel->setText(QCoreApplication::translate("MainWindow", "Slave Address:", nullptr));
         registerTypeLabel->setText(QCoreApplication::translate("MainWindow", "Register Type:", nullptr));
